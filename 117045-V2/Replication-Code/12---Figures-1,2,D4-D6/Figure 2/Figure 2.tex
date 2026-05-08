@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts, bbm, mathrsfs, graphicx}
+\usepackage{graphicx,caption}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage[margin=1.5 in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{positioning}
+\usepackage{rotating}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usetikzlibrary{calc}
+\usepackage{relsize}
+\tikzset{fontscale/.style = {font=\relsize{#1}}
+    }
+
+
+\begin{document}
+
+\begin{figure}[h]
+\center
+\textbf{Trends in Kinship and Conflict}
+\\~\\
+\hspace*{-1 cm}
+\begin{tikzpicture}
+\begin{axis}[%
+width =\textwidth ,height=4.5 in,
+xlabel = Year,
+xmin = 1490,
+xmax = 1920,
+clip=false,
+every y tick label/.style={},
+ylabel = War Frequency,
+ymin=0,
+ymax=.2,
+y tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    },
+    ytick={0,.05,.1,.15,.2},
+    %xtick style={draw=none},
+x tick label style={
+        /pgf/number format/1000 sep={}
+    },
+grid=none,
+     axis y line* = left,
+scatter/classes={%
+    a={mark=o}}],
+\addplot[black, dashed] coordinates {(1517,0)(1517,0.2)};
+ \node[anchor=south, align=center, fontscale=-3] at (axis cs: 1517,0.2) {Luther's Theses\\(1517)};
+\addplot[black, solid] coordinates {(1618,0)(1618,0.2)};
+ \node[anchor=south, align=center, fontscale=-3] at (axis cs: 1633,0.2) {Thirty Years' \\ War\\(1618-1648)};
+\addplot[black,solid] coordinates {(1648,0)(1648,0.2)}; 
+ 
+\addplot[black, solid] coordinates {(1701,0)(1701,0.2)};
+ \node[anchor=south, align=center, fontscale=-3] at (axis cs: 1709,0.2) {War of \\ Spanish Succession\\(1701-1714)};
+\addplot[black,solid] coordinates {(1714,0)(1714,0.2)};
+\addplot[black, dashed] coordinates {(1740,0)(1740,0.17)};
+ \node[anchor=south, align=center, fontscale=-4] at (axis cs: 1741,0.172) {War of \\ Austrian \\ Succession\\(1740-1748)};
+\addplot[black, solid] coordinates {(1792,0)(1792,0.2)};
+ \node[anchor=south, align=center, fontscale=-3] at (axis cs: 1804,0.2) {French Revolution and\\ Napoleonic Wars \\ (1792-1815)};
+\addplot[black,solid] coordinates {(1815,0)(1815,0.2)};
+ \node[anchor=south, align=center, fontscale=-3] at (axis cs: 1870,0.176) {Concert of \\ Europe\\ (1816-WWI)};
+\addplot[red, dashed, domain=1490:1890,samples=500]{.0047*x-3.8787-0.0000014004*x^2};
+\addplot[scatter,only marks, fill=red,
+    scatter src=explicit symbolic]%
+table[x=Decade, y=Wars, col sep = comma] {Wars_By_Decade.csv };
+\end{axis}
+\pgfplotsset{every axis y label/.append style={rotate=180,yshift=14.85 cm}}
+\begin{axis}[%
+width =\textwidth ,height=4.5 in,
+xlabel = Year,
+xmin = 1490,
+xmax = 1920,
+ylabel = Share Connected,
+ymin=0,
+ymax=1,
+ytick={0,.25,.5,.75,1},
+%ytick style={draw=none},
+hide x axis,
+grid=none,
+     axis y line* = right,
+scatter/classes={%
+a={mark=o,draw=blue}}],
+\addplot[blue, dotted, domain=1490:1920,samples=500]{0.0000054819*x^2 - 0.0171343944*x + 13.5937620621};
+\addplot[blue, scatter,only marks, fill=white,
+    scatter src=explicit symbolic]%
+table[x=Decade, y=Connection, col sep = comma] {Conn_By_Decade.csv};        
+\end{axis}        
+
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

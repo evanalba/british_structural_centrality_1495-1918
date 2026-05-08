@@ -1,0 +1,67 @@
+Estimate 1 Results Displayed:
+
+year	share_pairs_connected
+share connected in 1500s =	.21400132
+share connected in 1800s =	.71562281
+
+
+
+Estimate 3 Results Displayed:
+
+is_post_1800	war_frequency
+0				.0504593066871166
+1				.0136434212327003
+
+
+
+Estimate 5 Results Displayed:
+
+num personal unions
+3895				
+
+
+
+Estimate 7 Results Displayed:
+
+Country Pair	Years of Coexist	War Frequency
+Austria-France	363				.2479338794946671
+
+
+
+Estimate 11 Results Displayed:
+
+Number of Pairs Coexisting 100 Years	Number of Those Pairs Who Are Ever Connected
+274										262
+
+
+
+Estimate 12 Results Displayed:
+
+Decade	Share of Pairs Connected
+1910s	.9515418410301208
+1580s	.1166448220610619
+
+
+
+Estimate 13 Results Displayed:
+
+Coefficient of Year in Explaining Share of Pairs Closely Connected	.0003248826517132
+
+
+
+
+Estimate 15 Results Displayed:
+
+Number of Pair-Years Shocked by Death	4498
+
+
+
+
+Estimate 24 Results Displayed:
+
+Period		war frequency		average inv_path
+After 1800	.0138377593830228	.1181321367621422
+Before 1600	.0301023982465267	.0726617723703384
+
+
+

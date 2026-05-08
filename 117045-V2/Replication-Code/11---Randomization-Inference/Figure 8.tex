@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts, bbm, mathrsfs}
+\usepackage{graphicx,rotating}
+\usepackage{natbib}
+\usepackage{booktabs, multirow}
+\usepackage[para,online,flushleft]{threeparttable}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{sgame}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{footmisc}
+
+
+
+\usetikzlibrary{graphs}
+\usetikzlibrary{positioning}
+
+
+\begin{document}
+\begin{figure}
+\center
+\hspace{-.3 in}
+\resizebox*{!}{3.3 in}{
+\begin{tikzpicture}
+\begin{axis}[width=5.5 in,
+xlabel= Estimated Coefficient,
+xmin= -0.2,
+xmax= 0.30,
+grid,
+xtick distance=.1,
+xticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=2
+},
+ylabel= Number of Trials,
+ymin=0,
+ymax=900]
+            \addplot[ybar interval,mark=none, bar width=.01, fill=gray] table [x=Bin, y=Count, col sep = comma]{Bins.csv};  
+        \end{axis}
+\end{tikzpicture}}
+\end{figure}
+\end{document}

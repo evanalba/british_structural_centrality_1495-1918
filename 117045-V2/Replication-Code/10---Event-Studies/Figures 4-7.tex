@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts, bbm, mathrsfs}
+\usepackage{graphicx,rotating}
+\usepackage{natbib}
+\usepackage{booktabs, multirow}
+\usepackage[para,online,flushleft]{threeparttable}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{sgame}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{footmisc}
+
+
+
+\usetikzlibrary{graphs}
+\usetikzlibrary{positioning}
+
+
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand*\textfrac[2]{
+  \frac{\text{#1}}{\text{#2}}
+}
+
+\title{A Network of Thrones: Kinship and Conflict in Europe, 1495-1918}
+\date{\today}
+
+\begin{document}
+
+\setcounter{figure}{3}
+
+\begin{figure}[!t]
+\center
+\begin{tikzpicture}
+\begin{axis}[width=5 in, height=3 in,
+xlabel= Years Since Death,
+ylabel= (Path)$^{-1}$,
+ymin=0,
+ymax=.2,
+y tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    },
+scatter/classes={%
+    a={mark=o,draw=black}}]
+\addplot +[mark=none,draw=black] coordinates {(0,-1)(0,1)};
+\addplot[scatter,only marks,
+    scatter src=explicit symbolic,
+    error bars/.cd,y dir=both,y explicit]
+table [x=Year Since Death, y=Mean,  y error= Confidence Interval, col sep = comma]{Invpath_EventStudy.csv};    
+\end{axis}
+\end{tikzpicture}
+\caption{The \textbf{on-path} death of a mutual relative along the shortest path between rulers leads to a substantial decrease in the dyad's kinship connection as measured by inverse shortest path length. A path consists of a series of edges in the royal kinship network. An edge exists between any parent/child, sibling, or married pair of living individuals. \label{fig: PathShock}}
+\end{figure}
+\begin{figure}[!h]
+\center
+\begin{tikzpicture}
+\begin{axis}[%
+width=\textwidth,height=3 in,
+xlabel= Years Since Death,
+xmin= -10.1,
+xmax= 10.1,
+ylabel= War Frequency,
+ymin=0,
+ymax=.15,
+grid=major,
+y tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    },
+scatter/classes={%
+    a={mark=o,draw=black}}]
+\addplot +[mark=none,draw=black] coordinates {(-13,0) (17,0)};
+\addplot +[mark=none,draw=black] coordinates {(0,-1)(0,1)};
+\addplot +[mark=*, red, dashed] coordinates {(-11,.0383)(16,.0383)};
+\addplot[scatter,only marks,%
+    scatter src=explicit symbolic,
+    error bars/.cd,y dir=both,y explicit]%
+table [x=Year Since Death, y=Mean,  y error= Confidence Interval, col sep = comma]{Onpath_EventStudy.csv};   
+    \addplot[scatter,only marks, fill=white,
+    scatter src=explicit symbolic,
+    error bars/.cd,y dir=both,y explicit]%
+table [x=Year Since Death, y=Mean,  y error= Confidence Interval, col sep = comma]{Offpath_EventStudy.csv};        
+\end{axis}
+\end{tikzpicture}
+\caption{This figure plots the mean war frequency between dyads in the years before and after they experience the death of a relative. Solid dots indicate war frequency before and after an \textbf{on-path} death. Hollow dots are conditioned on close family deaths which are not on-path.  The dashed line indicates overall average dyadic war frequency.  The sample is restricted to dyads which experience only one death within the time horizon. $95\%$ confidence intervals (based on binomial statistics) are indicated by error bars.\label{fig: OverTime}}
+\end{figure}
+
+\begin{figure}[!h]
+\center
+\begin{tikzpicture}
+\begin{axis}[%
+width=\textwidth,height=3 in,
+xlabel= Years Since Unexpected Death,
+xmin= -10.1,
+xmax= 10.1,
+ylabel= War Frequency,
+ymin=0,
+ymax=.20,
+grid=major,
+y tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    },
+scatter/classes={%
+    a={mark=o,draw=black}}]
+\addplot +[mark=none,draw=black] coordinates {(-13,0) (17,0)};
+\addplot +[mark=none,draw=black] coordinates {(0,-1)(0,1)};
+\addplot +[mark=*, red, dashed] coordinates {(-11,.0383)(16,.0383)};
+\addplot[scatter,only marks,%
+    scatter src=explicit symbolic,
+    error bars/.cd,y dir=both,y explicit]%
+table [x=Year Since Death, y=Mean,  y error= Confidence Interval, col sep = comma]{Unexpected_EventStudy.csv};  
+\end{axis}
+\end{tikzpicture}
+\caption{Mean war frequency of dyads in the years before and after they experience the \textbf{unexpected} death of an on-path relative. The dashed line indicates overall average war frequency.  This sample is restricted to dyads which experience only one death within the time horizon. $95\%$ confidence intervals (based on binomial statistics) are indicated by error bars.\label{fig: UnexpectedOverTime}}
+\end{figure}
+\begin{figure}[!h]
+\center
+\begin{tikzpicture}
+\begin{axis}[%
+width=\textwidth,height=3 in,
+xlabel= Years Since Death,
+xmin= -10.1,
+xmax= 10.1,
+ylabel= Any War Frequency,
+ymin=.3,
+ymax=.8, % 4 to 7 looks good to me. The fact that its elevated in the middle has to do with the raw correlatin that more connected countries are more likely to go to war?
+grid=major,
+y tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    },
+scatter/classes={%
+    a={mark=o,draw=black}}]
+\addplot +[mark=none,draw=black] coordinates {(-13,0) (17,0)};
+\addplot +[mark=none,draw=black] coordinates {(0,-1)(0,1)};
+\addplot[scatter,only marks,%
+    scatter src=explicit symbolic,
+    error bars/.cd,y dir=both,y explicit]%
+table [x=Year Since Death, y=Mean,  y error= Confidence Interval, col sep = comma]{Anywar_EventStudy.csv};  
+\end{axis}
+\end{tikzpicture}
+\caption{The proportion of dyads with at least one country at war (including, but not necessarily with, each other) for the 10 years before and after an on-path death.  This sample is restricted to dyads which experience only one on-path death within the time horizon. $95\%$ confidence intervals (based on binomial statistics) are indicated by error bars. \label{fig: AnyWar}}
+\end{figure}
+\end{document}

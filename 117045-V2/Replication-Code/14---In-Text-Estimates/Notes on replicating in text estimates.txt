@@ -1,0 +1,119 @@
+Abstract:
+
+1) "Over our period of interest, the percentage of European monarchs with kinship ties increased threefold" -- see stata estimate_1, we show that the share dyads with living kinship ties goes from 21.4% in the 1500s to 71.6% in th 1800s
+
+2) Intro, page 3: "Our results imply that a pair of monarchs whose only family connection is a pair of married children would see a 9.5 percentage point increase in their annual war probability if this marriage tie were dissolved." 
+--->see page 24 which concludes: "This would correspond to a decrease in inverse shortest path length of 1/3, and an 9.5 percentage point increase in war frequency in each year until the network connection is rebuilt." The underlying estimate of the treatment effect is reported in table 4
+
+
+3) Intro, page 3: "In line with previous literature, we observe a more than 50% decline in the prevalence of war after 1800 [Levy (1983); Gat (2013)]" -- directly from figure 2. Also in associated stata code estimate_3, percent of pairs at war post 1800 = 1.4%, before 1800 = 5.0%
+
+Data Description, page 10 through 12: 
+
+4) "Our raw data consist of 92,321 country-pair (dyad) years.": directly from Stata .dta file "royal_obs_AEJ.dta"
+
+5) "Of these dyads, 3,895 dyad-years are in personal union, where the same ruler controlled two crowns (i.e., countries) simultaneously." See stata estimate_5
+
+6) "Wars start in approximately 0.9% of previously peaceful dyads. Conditional on being at war in a given year, 81.4% of dyads continue into the next year. Together, this implies an overall war frequency of 4% of dyad-years." -- directly from Table 1
+
+7) "For example, France and the Archduchy of Austria (and its successor states), which co-exist for 363 years in our data, are at war in 25% of years" -- see stata estimate_7
+
+8) "The genealogy has 872 individuals alive in the median year, but this amount increases strongly in later years" -- calculcated by AliveGraph.m
+
+9) "The average pair of rulers have 10.3 immediate family connections (i.e. parents, spouses, siblings or children) between them. " -- directly from table 1
+
+10) Kinship network definitions, page 13: "39.3 percent of dyad-years are connected by living kinship ties."  -- directly from table 1 
+
+11) "Of 274 dyads with more than 100 years of coexistence, only 12 are never connected." -- See stata estimate_11. 
+
+12) Kinship network definitions, page 13: "In the 1580's only eleven percent of states are connected, the lowest share on record. In the 1910's, the last decade in our data (albeit a partial one) over 95 percent are. -- see stata estimate_12
+
+13) Kinship network definitions, page 13: A positive trend is still observed when looking only at close connections of less than 8 steps." see ConnectionsOverTime.pdf (i.e, appendix table D3)
+
+14) page 15: "Of 88,426 dyad-years in the final data, 34,810 are observed to be connected by living kinship ties. These connected dyads are the only ones which can be affected by on-path deaths."-- From table 1
+
+15)  We observe 4,498 dyad-years with an on-path death." -- See stata estimate_15
+
+16) page 16: "These events result from the deaths of 274 distinct individuals, who are on - on average - the shortest paths of 16.4 dyads at the time of their deaths." -- 4498 (above) divided by 274 (from table 2)
+
+17) page 16: "We document the cause of death for 73.9% of the 276 shortest path deaths in our sample. Overwhelmingly, these deaths are peaceful and non-violent. The leading causes of death are old age (13.4%), unspecified illness (10.5%) and childbirth (10.1%), followed by a variety of specific illnesses. Of the 204 individuals with identified causes of death, only twelve died for reasons that could be plausibly tied to the inter-state political situation. Seven were assassinated, four were executed, and one was hit by a cannonball (the unlucky Frederick IV, Duke of Holstein-Gottorp)." -- from table 2
+
+18) page 18: "Specifically, we find 76 of the onpath deaths were monarchs, 73 were likely unexpected by contemporaries, and 40 can be linked to stress related to tense political situations, either international or domestic." -- Table 2
+
+19) page 23: "a change from being immediately connected, (Path)-1 = 1, to unconnected, (Path)-1 = 0, causes a 28.5 percentage point increase in war incidence." -- table 4
+
+20) page 23: "From the first stage regressions, we see that a recent on-path death produces an average change in inverse shortest
+path length of -0.06.... The results indicate that this variation causes ( with 95% confidence) a 1.69 ± .9 percentage point increase in (yearly) war incidence. That is a 42.3 ± 22.2 percent increase over the overall dyadic war frequency of approximately 4.0%." -- 
+
+0.0169=(-.285)*(-.0593)
+
+0.00888=sqrt((.010937/.0593)^2+(.0667/.285))^2)*(.0593*.285)*1.96
+
+0.4225=0.0169/0.04
+
+0.222=0.00888/0.04 -- from tables 1, 3, and 4
+
+21) page 24: "This would correspond to adecrease in inverse shortest path length of 1/3, and an 9.5 percentage point increase in war frequency in each year until the network connection is rebuilt." -- 
+
+0.095 = (-1/3)*(-0.285)
+
+22) page 25: "From columns (1) and (2) of Table 5, we see this variation is
+-0.058 when a dyad was at peace in the previous year and -0.084 following a year of war. So, a typical on-path death increases the probability of war onset by 0.29 percentage points. This is roughly a 33% increase over a base war onset frequency of 0.87%. Similarly, the probability of a war continuing from the previous year increases by 4.6 percentage points following a typical on-path death. This is a proportionally smaller effect, since wars continue at a rate of 81.4%." -- 
+
+0.0029=(-0.0576)*(-0.0506)
+
+0.333=.0029/.0087
+
+0.0455=(-0.0838)*(-0.543)
+
+--from table 5 and table 1
+
+22) page 25: "These results suggest that a typical on-path death would increase conflict severity (as measured by battle deaths) by 14.7% to 26.1% depending on the measure used." --
+
+0.147=exp(-2.318*(-.0593))-1
+
+0.261=exp(-3.905*(-.0593))-1
+
+-- table 6 and table 3
+
+23) page 34: "The mean estimate in these simulations is .0475. This alleviates concerns that our main estimator is negatively biased. The standard deviation of the simulated estimates, .0478, is smaller than our analytic standard error (.064). The coefficient estimated on the real data, -.285, is more negative than any of the 10,000 simulated estimates." from figure 8 (See also Randomization_Inf.log) and table 4
+
+24) page 38: "Specifically, we observe 3.01% of dyad-years at war from 1495-1600 compared to only 1.38% from 1800-1918. Suppose we replaced the 19th century's kinship network with its 16th century counterpart. This would result in average inverse shortest path length falling from .118 to .073. " -- see estimates_24
+
+
+25) In the post-1800 subsample, we estimate a reduction in connectivity of this magnitude would cause war incidence to increase by 0.73 percentage points. Thus our results suggest that roughly 45% of the decline in war can be attributed to growing kinship ties between rulers."-- from the above and table 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
